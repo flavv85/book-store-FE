@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClientService } from 'src/app/service/http-client.service';
 import { User } from 'src/app/User';
 
@@ -9,17 +10,38 @@ import { User } from 'src/app/User';
 })
 export class UsersComponent implements OnInit {
   users: Array<User>;
+  selectedUser: User;
+  action: string;
 
-  constructor(private httpClientService: HttpClientService) {}
+  // ActivatedRoute - Gives us access to the current route instance.
+  // Router - using this we can navigate to another page.
+
+  constructor(
+    private httpClientService: HttpClientService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.httpClientService
       .getUsers()
       .subscribe((response) => this.handleSuccessfulResponse(response));
+
+    // ActivatedRoute to get the current route parameters
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.action = params['action'];
+    });
   }
 
   handleSuccessfulResponse(response) {
     this.users = response;
+  }
+
+  addUser() {
+    this.selectedUser = new User();
+    this.router.navigate(['admin', 'users'], {
+      queryParams: { action: 'add' },
+    });
   }
 }
 
