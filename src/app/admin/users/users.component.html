@@ -23,6 +23,11 @@
   </div>
   <!-- show the add users page only when we have the action parameter as add.  Also we will be specifying the user as selectedUser which will be passed as input to the add user component. -->
   <div class="col-md-6">
-    <app-adduser *ngIf="action === 'add'" [user]="selectedUser"></app-adduser>
+    <!-- specify the function to be called on userAddedEvent -->
+    <app-adduser
+      *ngIf="action === 'add'"
+      [user]="selectedUser"
+      (userAddedEvent)="refreshData()"
+    ></app-adduser>
   </div>
 </div>

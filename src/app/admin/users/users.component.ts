@@ -23,6 +23,11 @@ export class UsersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // function will fetch the user list from the Spring Boot Application
+    this.refreshData();
+  }
+
+  refreshData() {
     this.httpClientService
       .getUsers()
       .subscribe((response) => this.handleSuccessfulResponse(response));
