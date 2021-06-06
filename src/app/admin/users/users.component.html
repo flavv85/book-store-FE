@@ -15,7 +15,13 @@
           <td>{{ user.id }}</td>
           <td>{{ user.name }}</td>
           <td>
-            <button type="button" class="btn btn-primary">Show Details</button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="viewUser(user.id)"
+            >
+              Show Details
+            </button>
           </td>
         </tr>
       </tbody>
@@ -29,5 +35,10 @@
       [user]="selectedUser"
       (userAddedEvent)="refreshData()"
     ></app-adduser>
+    <app-viewuser
+      *ngIf="action === 'view'"
+      [user]="selectedUser"
+      (userDeletedEvent)="refreshData()"
+    ></app-viewuser>
   </div>
 </div>
