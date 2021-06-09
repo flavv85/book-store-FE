@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../User';
+import { Book } from '../book';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpClientService {
   constructor(private httpClient: HttpClient) {}
+
+  // ---------- users service --------------
 
   getUsers() {
     return this.httpClient.get<User[]>('http://localhost:8080/users/get');
@@ -21,5 +24,10 @@ export class HttpClientService {
 
   deleteUser(id) {
     return this.httpClient.delete<User>('http://localhost:8080/users/' + id);
+  }
+  // ---------- books service --------------
+
+  getBooks() {
+    return this.httpClient.get<Book[]>('http://localhost:8080/books/get');
   }
 }
