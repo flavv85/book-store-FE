@@ -1,4 +1,6 @@
+<!-- In case of add book we will be adding a button in the books page.For displaying the add books page in the books page we will be making use of the selector tag of the add book component. We will be showing the add books page only when we have the action parameter as add.  Also we will be specifying the book as selectedBook which will be passed as input to the add book component. -->
 <h1>Books Admin</h1>
+<a class="btn btn-primary mb-3" (click)="addBook()">Add New Book</a>
 <div class="container row">
   <div class="col-md-6">
     <table class="table">
@@ -14,13 +16,7 @@
           <td>{{ book.id }}</td>
           <td>{{ book.name }}</td>
           <td>
-            <button
-              type="button"
-              class="btn btn-primary"
-              (click)="setBook(book.id)"
-            >
-              Show Details
-            </button>
+            <button type="button" class="btn btn-primary">Show Details</button>
           </td>
         </tr>
       </tbody>
@@ -28,7 +24,11 @@
   </div>
   <!-- show the add books page only when we have the action parameter as add.  Also we will be specifying the user as selectedUser which will be passed as input to the add user component. -->
   <div class="col-md-6">
-    View Book Details/Add Book
+    <app-addbook
+      *ngIf="action === 'add'"
+      [book]="selectedBook"
+      (bookAddedEvent)="refreshData()"
+    ></app-addbook>
     <!-- specify the function to be called on bookAddedEvent -->
   </div>
 </div>

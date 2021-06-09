@@ -1,0 +1,45 @@
+<!-- making use of the ngModel directive to bind the form elements to Book object
+recieved from the parent Books Component. -->
+<h1>Add Book</h1>
+<form>
+  <label for="name">Name</label>
+  <input
+    type="text"
+    class="form-control"
+    id="name"
+    placeholder="book name"
+    [(ngModel)]="book.name"
+    name="name"
+  />
+  <label for="name">Author</label>
+  <input
+    type="text"
+    class="form-control"
+    id="author"
+    placeholder="book author"
+    [(ngModel)]="book.author"
+    name="author"
+  />
+  <label for="name">Price</label>
+  <input
+    type="text"
+    class="form-control"
+    id="price"
+    placeholder="book price"
+    [(ngModel)]="book.price"
+    name="price"
+  />
+  <br />
+  <input type="file" (change)="onFileChanged($event)" />
+  <img
+    [src]="imgURL"
+    height="200"
+    width="auto"
+    *ngIf="imgURL"
+    alt="book cover"
+  />
+  <br />
+  <button type="button" class="btn btn-success" (click)="saveBook()">
+    Save Book
+  </button>
+</form>

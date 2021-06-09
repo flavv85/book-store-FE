@@ -11,6 +11,7 @@ import { AdduserComponent } from './admin/users/adduser/adduser.component';
 import { FormsModule } from '@angular/forms';
 import { ViewuserComponent } from './admin/users/viewuser/viewuser.component';
 import { BooksComponent } from './admin/books/books.component';
+import { AddbookComponent } from './admin/books/addbook/addbook.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { BooksComponent } from './admin/books/books.component';
     AdduserComponent,
     ViewuserComponent,
     BooksComponent,
+    AddbookComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
