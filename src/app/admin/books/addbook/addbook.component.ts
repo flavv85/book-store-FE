@@ -41,24 +41,32 @@ export class AddbookComponent implements OnInit {
   }
 
   saveBook() {
-    const uploadData = new FormData();
-    uploadData.append('imageFile', this.selectedFile, this.selectedFile.name);
-    this.selectedFile.imageName = this.selectedFile.name;
+    //If there is no book id then add book call to BE else edit book call to BE
+    if (this.book.id == null) {
+      const uploadData = new FormData();
+      uploadData.append('imageFile', this.selectedFile, this.selectedFile.name);
+      this.selectedFile.imageName = this.selectedFile.name;
 
-    this.httpClient
-      .post('http://localhost:8080/books/upload', uploadData, {
-        observe: 'response',
-      })
-      .subscribe((response) => {
-        if (response.status === 200) {
-          this.httpClientService.addBook(this.book).subscribe((book) => {
-            this.bookAddedEvent.emit();
-            this.router.navigate(['admin', 'books']);
-          });
-          console.log('Image uploaded!');
-        } else {
-          console.log('Error uploading image!');
-        }
+      this.httpClient
+        .post('http://localhost:8080/books/upload', uploadData, {
+          observe: 'response',
+        })
+        .subscribe((response) => {
+          if (response.status === 200) {
+            this.httpClientService.addBook(this.book).subscribe((book) => {
+              this.bookAddedEvent.emit();
+              this.router.navigate(['admin', 'books']);
+            });
+            console.log('Image uploaded!');
+          } else {
+            console.log('Error uploading image!');
+          }
+        });
+    } else {
+      this.httpClientService.updateBook(this.book).subscribe((book) => {
+        this.bookAddedEvent.emit();
+        this.router.navigate(['admin', 'books']);
       });
+    }
   }
 }

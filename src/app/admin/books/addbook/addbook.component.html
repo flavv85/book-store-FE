@@ -1,6 +1,8 @@
 <!-- making use of the ngModel directive to bind the form elements to Book object
 recieved from the parent Books Component. -->
-<h1>Add Book</h1>
+
+<!-- if the id in the url exists -> update book else if in url there is no id it will be add new book. -->
+<h1>{{ book.id == null ? "Add" : "Edit" }} Book</h1>
 <form>
   <label for="name">Name</label>
   <input

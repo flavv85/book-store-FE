@@ -29,4 +29,10 @@ export class ViewbookComponent implements OnInit {
       this.router.navigate(['admin', 'books']);
     });
   }
+
+  updateBook() {
+    this.router.navigate(['admin', 'books'], {
+      queryParams: { action: 'edit', id: this.book.id },
+    });
+  }
 }
