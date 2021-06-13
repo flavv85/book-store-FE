@@ -16,7 +16,13 @@
           <td>{{ book.id }}</td>
           <td>{{ book.name }}</td>
           <td>
-            <button type="button" class="btn btn-primary">Show Details</button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="viewBook(book.id)"
+            >
+              Show Details
+            </button>
           </td>
         </tr>
       </tbody>
@@ -29,6 +35,11 @@
       [book]="selectedBook"
       (bookAddedEvent)="refreshData()"
     ></app-addbook>
-    <!-- specify the function to be called on bookAddedEvent -->
+    <!-- show the view books page only when we have the action parameter as "view".  Also we will be specifying the book as selectedBook which will be passed as input to the view book component -->
+    <app-viewbook
+      *ngIf="action === 'view'"
+      [book]="selectedBook"
+      (bookDelEvent)="refreshData()"
+    ></app-viewbook>
   </div>
 </div>

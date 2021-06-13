@@ -37,4 +37,8 @@ export class HttpClientService {
       newBook
     );
   }
+
+  deleteBook(id) {
+    return this.httpClient.delete<Book>('http://localhost:8080/books/' + id);
+  }
 }

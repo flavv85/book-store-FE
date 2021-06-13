@@ -10,6 +10,7 @@ import { HttpClientService } from 'src/app/service/http-client.service';
 })
 export class BooksComponent implements OnInit {
   books: Array<Book>;
+  booksReceived: Array<Book>;
   selectedBook: Book;
   action: string;
 
@@ -23,17 +24,48 @@ export class BooksComponent implements OnInit {
   ngOnInit(): void {
     this.refreshData();
   }
+
   refreshData() {
     this.httpClientService
       .getBooks()
       .subscribe((response) => this.handleSuccessfulResponse(response));
+
     this.activatedRoute.queryParams.subscribe((params) => {
       this.action = params['action'];
+
+      // this will be the id of the book whose details are to be displayed when action is view.
+      const bookId = params['id'];
+
+      if (bookId) {
+        this.selectedBook = this.books.find((book) => book.id === +bookId);
+      }
     });
   }
-
+  // taking the books response returned from the database and we will be adding the answer retrieved
   handleSuccessfulResponse(response) {
-    this.books = response;
+    this.books = new Array<Book>();
+
+    // get books returned by the api call
+    this.booksReceived = response;
+    for (const book of this.booksReceived) {
+      const bookReceivedImgField = new Book();
+      bookReceivedImgField.id = book.id;
+      bookReceivedImgField.name = book.name;
+      bookReceivedImgField.author = book.author;
+      bookReceivedImgField.price = book.price;
+      bookReceivedImgField.picByte = book.picByte;
+      // populate retrieved image field so that book image can be displayed
+      bookReceivedImgField.displayImg =
+        'data:image/jpeg;base64,' + book.picByte;
+
+      this.books.push(bookReceivedImgField);
+    }
+  }
+
+  viewBook(id: number) {
+    this.router.navigate(['admin', 'books'], {
+      queryParams: { id, action: 'view' },
+    });
   }
 
   addBook() {

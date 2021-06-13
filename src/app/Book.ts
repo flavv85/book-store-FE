@@ -4,4 +4,5 @@ export class Book {
   name: string;
   picByte: string;
   price: string;
+  displayImg: string;
 }
