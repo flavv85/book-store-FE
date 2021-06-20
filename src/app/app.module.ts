@@ -14,6 +14,7 @@ import { BooksComponent } from './admin/books/books.component';
 import { AddbookComponent } from './admin/books/addbook/addbook.component';
 import { ViewbookComponent } from './admin/books/viewbook/viewbook.component';
 import { ShopbookComponent } from './shopbook/shopbook.component';
+import { CartComponent } from './shopbook/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ShopbookComponent } from './shopbook/shopbook.component';
     AddbookComponent,
     ViewbookComponent,
     ShopbookComponent,
+    CartComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

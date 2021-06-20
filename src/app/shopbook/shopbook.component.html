@@ -1,3 +1,59 @@
+<div class="row">
+  <div class="col-md-2">
+    <h1>Books</h1>
+  </div>
+  <div class="col-md-10 custom-products-cart-container">
+    <div class="offset-md-8">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <br />
+          <a
+            href="#"
+            class="btn btn-info btn-lg"
+            data-toggle="dropdown"
+            role="button"
+            aria-expanded="false"
+          >
+            <span class="fa fa-shopping-cart">Checkout Items: </span>
+            <span class="caret">{{ cartBooks.length }}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-cart" role="menu">
+            <li *ngFor="let item of cartBooks">
+              <div class="item product-cart-item row">
+                <div class="col-md-8" *ngIf="item">{{ item.name }}</div>
+                <div class="col-md-4" *ngIf="item">
+                  <strong>{{ item.price }} Lei</strong>
+                </div>
+              </div>
+            </li>
+
+            <hr />
+            <li class="action-button">
+              <a
+                class="btn btn-small btn-success"
+                role="button"
+                (click)="goToCart()"
+                >View Cart</a
+              >
+            </li>
+            <li class="action-button" *ngIf="cartBooks.length > 0">
+              <a
+                class="btn btn-small btn-warning"
+                role="button"
+                (click)="emptyCart()"
+                >Empty Cart</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<hr />
+<hr />
+
 <!-- bootstrap card css -->
 <div class="row">
   <div class="col-sm" *ngFor="let book of books; let i = index">
@@ -14,7 +70,11 @@
           <p>{{ book.author }}</p>
         </div>
         <div class="offset-md-4 col-md-4">
-          <button class="btn-primary btn-sm" (click)="addToCart(book.id)">
+          <button
+            class="btn-primary btn-sm"
+            (click)="addToCart(book.id)"
+            [disabled]="book.isAdded === true"
+          >
             Add To Cart
           </button>
         </div>
