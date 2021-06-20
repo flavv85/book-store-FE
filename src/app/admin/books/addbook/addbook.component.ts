@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Book } from 'src/app/book';
 import { HttpClientService } from 'src/app/service/http-client.service';
 
@@ -15,7 +15,6 @@ export class AddbookComponent implements OnInit {
 
   @Output()
   bookAddedEvent = new EventEmitter();
-
   private selectedFile;
   imgURL: any;
 

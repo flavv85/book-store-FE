@@ -31,15 +31,17 @@ recieved from the parent Books Component. -->
     [(ngModel)]="book.price"
     name="price"
   />
-  <br />
-  <input type="file" (change)="onFileChanged($event)" />
-  <img
-    [src]="imgURL"
-    height="200"
-    width="auto"
-    *ngIf="imgURL"
-    alt="book cover"
-  />
+  <div class="form-group" *ngIf="book.id == null">
+    <br />
+    <input type="file" (change)="onFileChanged($event)" />
+    <img
+      [src]="imgURL"
+      height="200"
+      width="auto"
+      *ngIf="imgURL"
+      alt="book cover"
+    />
+  </div>
   <br />
   <button type="button" class="btn btn-success" (click)="saveBook()">
     Save Book

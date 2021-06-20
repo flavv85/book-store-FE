@@ -1,0 +1,11 @@
+.outer-container {
+  min-height: 100%;
+}
+.inner-container {
+  padding-bottom: 10px;
+  margin-bottom: 40px;
+}
+.footer-container {
+  text-align: center;
+  margin-top: -40px;
+}

@@ -37,7 +37,9 @@ export class BooksComponent implements OnInit {
       const bookId = params['id'];
 
       if (bookId) {
-        this.selectedBook = this.books.find((book) => book.id === +bookId);
+        this.selectedBook = this.selectedBook = this.books.find((book) => {
+          return book.id === +bookId;
+        });
       }
     });
   }

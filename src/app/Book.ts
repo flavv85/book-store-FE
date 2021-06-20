@@ -5,4 +5,6 @@ export class Book {
   picByte: string;
   price: string;
   displayImg: string;
+  // check if an item is added to the shopping cart
+  isAdded: boolean;
 }
