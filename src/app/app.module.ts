@@ -15,6 +15,7 @@ import { AddbookComponent } from './admin/books/addbook/addbook.component';
 import { ViewbookComponent } from './admin/books/viewbook/viewbook.component';
 import { ShopbookComponent } from './shopbook/shopbook.component';
 import { CartComponent } from './shopbook/cart/cart.component';
+import { LandingPageBooksComponent } from './admin/books/landing-page-books/landing-page-books.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CartComponent } from './shopbook/cart/cart.component';
     ViewbookComponent,
     ShopbookComponent,
     CartComponent,
+    LandingPageBooksComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
